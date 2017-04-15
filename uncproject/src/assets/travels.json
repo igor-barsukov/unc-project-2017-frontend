@@ -1,0 +1,11 @@
+{
+  "travels":
+  [{
+    "id": 1,
+    "name": "Concert",
+    "start_date": "03.02.2017",
+    "end_date": "05.02.2017",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view ",
+    "isactive": true
+  }]
+}

@@ -3,6 +3,7 @@ import {UserSignIn} from "./user.sign-in.interface";
 import {HttpService} from "../services/http.service";
 import {Router} from "@angular/router";
 import {UserRegistered} from "../models/user-registered.interface";
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +15,7 @@ export class SignInComponent implements OnInit {
   userSignIn:UserSignIn;
   receivedUser:UserRegistered;
 
-  constructor(private route:Router, private httpService:HttpService) {
+  constructor(private route:Router, private httpService:HttpService,private localStorageService: LocalStorageService) {
   }
 
   ngOnInit() {
@@ -22,6 +23,9 @@ export class SignInComponent implements OnInit {
       email: '',
       password: ''
     }
+    //localStorage.setItem('id','3');
+    //localStorage.getItem('id');
+    
   }
 
   done:boolean = false;
@@ -32,7 +36,9 @@ export class SignInComponent implements OnInit {
         .subscribe((data) => {
           this.receivedUser = data;
           this.done = true;
-          this.route.navigateByUrl("/profile/" + this.receivedUser.id + "/account");
+          this.route.navigateByUrl("/account/" + this.receivedUser.id + "/profile/account");
+            localStorage.setItem('id', this.receivedUser.id.toString());
+            console.log(localStorage.getItem('id'));
         });
     }
   }

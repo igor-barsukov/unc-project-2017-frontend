@@ -4,15 +4,12 @@ import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Rx";
 import {HttpService} from "../services/http.service";
 import {Response} from "@angular/http";
-import {Gender} from "../models/gender.interface";
-import {City} from "../models/city.interface";
-import {State} from "../models/state.interface";
-import {Country} from "../models/country.interface";
+
 
 @Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
-    styleUrls: ['../profile/profile.component.css'],
+    styleUrls: ['../account/profile/profile.component.css'],
     providers: [HttpService]
 })
 export class UserComponent implements OnInit {

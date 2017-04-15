@@ -1,74 +1,60 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-.page {
-    min-height: 100%;
-    margin-bottom: -50px;
-}
-* html .page {
-    height: 100%;
-}
-.buffer {
-    height: 50px;
-}
-.planning {
-    margin: 70px;
-    position: fixed;
-      background-color: white;
+.container {
+  background-color: white;
+  margin-top: 80px;
+  width: 90%;
+  margin-bottom: 20px;
+  z-index: 10;
+  border-radius: 0.5rem;
+  height: 100%;
+  padding: 40px;
 }
 
-.planning ul{
-    max-height: 228px;
-    overflow-y: scroll;
+.planning-info {
+  padding-right: 40px;
 }
 
-.panel {
-    height: 420px;
-    margin-left: 45px;
-}
-.planning i{
-    float: right;
-}
-.nav-stacked li {
-    background: #fff none repeat scroll 0 0;
-    float: none;
-    height: 50px;
-    padding: 15px;
-    text-align: center;
-    width: 170px;
-  color: #337ab7;
-}
-.nav-stacked li:hover {
-    background-color: #eeeeee;
-}
-.nav-stacked li a {
-    text-decoration: none;
-    color: #5f6f81;
-    margin-top: -10px;
-}
-.nav-stacked li:hover a {
-    color: #337ab7;
-    text-decoration: none;
-    background-color: #eeeeee;
+.sidebar-planning {
+  max-height: 280px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-top: 20px;
+  width: 200px
 }
 
-.planning button {
-    margin-top: 10px;
-    width: 170px;
+.sidebar-planning::-webkit-scrollbar{
+  width: 2px;
 }
 
-.fa.fa-caret-right {
-    margin: 3px 15px 0 12px;
+.sidebar-planning::-webkit-scrollbar-thumb {
+  border: none;
+  background-color: transparent;
+  max-height: 5px;
 }
+
+.sidebar-planning:hover::-webkit-scrollbar-thumb{
+  border: none;
+  background-color: blue;
+  max-height: 20px;
+}
+
+.sidebar-planning::-webkit-scrollbar-track{
+  border: none;
+  background-color: transparent;
+}
+
 
 .sidebar-img {
-  width: 170px;
+  width: 200px;
   display: inline-block;
   text-align: center;
 }
-.user-avatar {
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.trip-avatar {
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
@@ -79,11 +65,11 @@ html, body {
   overflow: hidden;
 }
 
-.user-avatar span {
+.trip-avatar span {
   display: none;
 }
 
-.user-avatar:hover span {
+.trip-avatar:hover span {
   position: absolute;
   background-color: rgba(0,0,0,0.4);
   color: #fff;
@@ -96,8 +82,7 @@ html, body {
   display: block;
 }
 
-.image {
-  width: 100%;
-  height: 100%;
+.nav-stacked li {
+  float: none;
+  text-align: center;
 }
-

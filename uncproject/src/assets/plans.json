@@ -1,0 +1,12 @@
+{
+  "plans":
+  [{
+    "id": 1,
+    "name": "some day",
+    "travel_id": 1,
+    "start_date": "03.02.2017",
+    "end_date": "05.02.2017",
+    "info": "Info",
+    "isactive": true
+  }]
+}

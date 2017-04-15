@@ -17,6 +17,7 @@ export class HttpService {
   }
 
   addOrUpdateUser(obj:UserRegistered) {
+
     var csrf_token = jQuery("meta[name='_csrf']").attr("content");
     var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
     let headers = new Headers({
@@ -46,7 +47,7 @@ export class HttpService {
     var params = obj.password+"/"+obj.email;
 
     console.log(params.toString());
-    return this.http.post('http://localhost:8181/users/login/' + params, {headers: headers})
+    return this.http.post('http://localhost:8181/users/login/' + params , {headers: headers})
       .map((resp:Response)=>resp.json())
       .catch((error:any) => {
         return Observable.throw(error);
@@ -61,12 +62,23 @@ export class HttpService {
       });
   }
 
+  getCity(){
+    return this.http.get('http://localhost:8181/countries')
+      .catch((error:any) => {
+        return Observable.throw(error);
+      });
+  }
+
+
   getAlbums() {
     return this.http.get('assets/user.album.json')
   }
 
-  getData() {
-    return this.http.get('assets/trips.json')
+  getHomeTrips() {
+    return this.http.get('http://localhost:8181/travels')
+      .catch((error:any) => {
+        return Observable.throw(error);
+      });
   }
 
   getProfileTrips() {
@@ -86,5 +98,11 @@ export class HttpService {
       .catch((error:any) => {
         return Observable.throw(error);
       });
+  }
+  getPlans() {
+    return this.http.get('assets/plans.json')
+  }
+  getTravels() {
+    return this.http.get('assets/travels.json')
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -8,7 +9,11 @@ import { Component, OnInit} from '@angular/core';
 })
 export class TripDayFieldComponent implements OnInit {
 
-  constructor() { }
+  constructor(private  _location: Location) { }
+  backClick(){
+    this._location.back();
+  }
+
 
   ngOnInit() {
   }
