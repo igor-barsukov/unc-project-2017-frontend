@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {User} from "../models/user.interface";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Rx";
@@ -12,7 +12,7 @@ import {Response} from "@angular/http";
     styleUrls: ['../account/profile/profile.component.css'],
     providers: [HttpService]
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
     public user:User;
     private id:number;
     private routeSubscription:Subscription;

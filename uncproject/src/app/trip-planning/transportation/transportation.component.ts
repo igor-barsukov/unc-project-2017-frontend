@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import {Subscription} from "rxjs/Subscription";
+import {HttpService} from "../../services/http.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-transportation',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransportationComponent implements OnInit {
 
-  constructor() { }
+  private accountId:number = this.route.parent.parent.parent.parent.snapshot.params["id"];
+  private tripPlanId:number = this.route.parent.parent.snapshot.params["id"];
+  private id:number = this.route.parent.snapshot.params["id"];
+  private routeSubscription:Subscription;
+
+  constructor(private route:ActivatedRoute, private httpService:HttpService) { }
+
 
   ngOnInit() {
   }

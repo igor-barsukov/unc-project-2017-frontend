@@ -9,11 +9,11 @@
           <div class="model-dialog modal-sm">
             <div class="modal-content">
             <div class="btn-group-vertical">
-              <button class="btn" (click)="showDialog = !showDialog; staticModal.hide()" routerLink="/trip-planning/:name/day/:id/transport" data-toggle="modal">
+              <button class="btn" (click)="showDialog = !showDialog; staticModal.hide()" routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/transport" data-toggle="modal">
                 Transport</button>
-              <button class="btn" (click)="showDialog = !showDialog; staticModal.hide()" routerLink="/trip-planning/:name/day/:id/lodging" data-toggle="modal">
+              <button class="btn" (click)="showDialog = !showDialog; staticModal.hide()" routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/lodging" data-toggle="modal">
                 Lodging</button>
-              <button class="btn" (click)="showDialog = !showDialog; staticModal.hide()" routerLink="/trip-planning/:name/day/:id/sights" data-toggle="modal">
+              <button class="btn" (click)="showDialog = !showDialog; staticModal.hide()" routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/sights" data-toggle="modal">
                 Sights</button>
             </div>
             </div>

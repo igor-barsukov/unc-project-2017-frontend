@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,OnDestroy} from '@angular/core';
 import {Subscription} from "rxjs/Subscription";
 import {HttpService} from "../services/http.service";
 import {ActivatedRoute} from "@angular/router";
@@ -13,7 +13,7 @@ export class Days {
   styleUrls: ['./trip-planning.component.css'],
   providers: [HttpService]
 })
-export class TripPlanningComponent implements OnInit {
+export class TripPlanningComponent implements OnInit, OnDestroy {
   showDialog = false;
   public days:Days[];
   public i:number = 1;
