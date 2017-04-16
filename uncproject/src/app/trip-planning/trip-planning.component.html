@@ -10,11 +10,11 @@
 
       <div class="sidebar-planning">
         <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a routerLink="/account/{{profileId}}/trips/trip-planning/{{id}}/trip-info">Trip info
+          <li class="active"><a routerLink="/trip-planning/{{id}}/trip-info">Trip info
             <i class="fa fa-caret-right" style="float: right"></i>
           </a></li>
           <li *ngFor="let day of days; let index = i">
-            <a routerLink="/account/{{profileId}}/trips/trip-planning/{{id}}/day/{{i}}">
+            <a routerLink="/trip-planning/{{id}}/day/{{id}}">
               Day {{day.id}}
               <i class="fa fa-caret-right" style="float: right"></i>
             </a>

@@ -19,7 +19,6 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
   public i:number = 1;
 
   private id:number;
-  private profileId:number = this.route.parent.parent.snapshot.params["id"];
   private routeSubscription:Subscription;
 
   constructor(private route:ActivatedRoute, private httpService:HttpService) {

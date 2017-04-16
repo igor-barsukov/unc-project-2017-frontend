@@ -42,6 +42,7 @@ import {ProfileEmailComponent} from "./account/profile/profile-email/profile-ema
 import {ProfileComponent} from "./account/profile/profile.component";
 
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { MessagesComponent } from './messages/messages.component';
 
 const userRoutes: Routes = [
   { path: 'user-account', component: UserAccountComponent},
@@ -68,11 +69,6 @@ const tripRoutes: Routes = [
   { path: 'day/:id', component: TripDayFieldComponent, children: eventRoutes}
 ];
 
-
-const tripPlaningRoutes: Routes = [
-  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
-];
-
 const profileRoutes: Routes = [
   { path: 'account', component: ProfileAccountComponent},
   { path: 'password', component: ProfilePasswordComponent},
@@ -81,7 +77,7 @@ const profileRoutes: Routes = [
 
 const accountRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, children: profileRoutes},
-  { path: 'trips', component: TripsComponent, children: tripPlaningRoutes },
+  { path: 'trips', component: TripsComponent },
   { path: 'album', component: ProfilePhotosComponent}
 ];
 
@@ -91,6 +87,7 @@ const appRoutes: Routes =[
   { path: 'registered', component: RegisteredComponent},
   { path: 'login', component: SignInComponent},
   { path: 'user/:id', component: UserComponent,children:userRoutes},
+  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
   { path: '**', component: NotFoundComponent },
 
 ];
@@ -129,7 +126,8 @@ const appRoutes: Routes =[
     BusDialogComponent,
     TransportationComponent,
     ChatComponent,
-    AccountComponent
+    AccountComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

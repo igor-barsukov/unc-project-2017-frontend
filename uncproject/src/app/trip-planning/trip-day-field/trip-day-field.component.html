@@ -9,11 +9,11 @@
           <div class="model-dialog modal-sm">
             <div class="modal-content">
             <div class="btn-group-vertical">
-              <button class="btn" (click)="showDialog = !showDialog; staticModal.hide()" routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/transport" data-toggle="modal">
+              <button class="btn" (click)="showDialogWin = !showDialogWin; staticModal.hide()" routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/flight" data-toggle="modal">
                 Transport</button>
-              <button class="btn" (click)="showDialog = !showDialog; staticModal.hide()" routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/lodging" data-toggle="modal">
+              <button class="btn" (click)="showDialogWin = !showDialogWin; staticModal.hide()" routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/lodging" data-toggle="modal">
                 Lodging</button>
-              <button class="btn" (click)="showDialog = !showDialog; staticModal.hide()" routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/sights" data-toggle="modal">
+              <button class="btn" (click)="showSightsDialog = !showSightsDialog; staticModal.hide()" routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/sights" data-toggle="modal">
                 Sights</button>
             </div>
             </div>
@@ -24,15 +24,26 @@
 
         <!--Dialog-->
 
-    <app-dialog [(visible)]="showDialog">
+    <app-dialog [(visible)]="showDialogWin">
       <div class="modal-content">
       <router-outlet></router-outlet>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="showDialog = !showDialog; backClick()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="showDialog = !showDialog; backClick()">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="showDialogWin = !showDialogWin; backClick()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="showDialogWin = !showDialogWin; backClick()">Submit</button>
       </div>
       </div>
     </app-dialog>
+
+    <!--SightsDialog-->
+  <app-dialog [(visible)]="showSightsDialog">
+    <div class="modal-content" style="width: 200%;height: 600px; max-height: 650px;margin-left: -50.2%;">
+      <app-sights></app-sights>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="showSightsDialog = !showSightsDialog; backClick()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="showSightsDialog = !showSightsDialog; backClick()">Submit</button>
+      </div>
+    </div>
+  </app-dialog>
 
 
 
