@@ -42,6 +42,9 @@ import {ProfileEmailComponent} from "./account/profile/profile-email/profile-ema
 import {ProfileComponent} from "./account/profile/profile.component";
 
 import { LocalStorageModule } from 'angular-2-local-storage';
+import {MainGuard} from "./guards/main.guard";
+import {LoginGuard} from "./guards/login.guard";
+import { MapComponent } from './map/map.component';
 import { MessagesComponent } from './messages/messages.component';
 
 const userRoutes: Routes = [
@@ -69,6 +72,11 @@ const tripRoutes: Routes = [
   { path: 'day/:id', component: TripDayFieldComponent, children: eventRoutes}
 ];
 
+
+// const tripPlaningRoutes: Routes = [
+//   { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
+// ];
+
 const profileRoutes: Routes = [
   { path: 'account', component: ProfileAccountComponent},
   { path: 'password', component: ProfilePasswordComponent},
@@ -76,18 +84,19 @@ const profileRoutes: Routes = [
 ];
 
 const accountRoutes: Routes = [
-  { path: 'profile', component: ProfileComponent, children: profileRoutes},
-  { path: 'trips', component: TripsComponent },
-  { path: 'album', component: ProfilePhotosComponent}
+  { path: 'profile', component: ProfileComponent, children: profileRoutes, canActivate: [MainGuard, LoginGuard]},
+  { path: 'trips', component: TripsComponent, canActivate: [MainGuard, LoginGuard]},
+  { path: 'album', component: ProfilePhotosComponent, canActivate: [MainGuard, LoginGuard]}
 ];
 
 const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'account/:id', component: AccountComponent, children: accountRoutes},
   { path: 'registered', component: RegisteredComponent},
+  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
+  { path: 'map', component: MapComponent},
   { path: 'login', component: SignInComponent},
   { path: 'user/:id', component: UserComponent,children:userRoutes},
-  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
   { path: '**', component: NotFoundComponent },
 
 ];
@@ -127,6 +136,7 @@ const appRoutes: Routes =[
     TransportationComponent,
     ChatComponent,
     AccountComponent,
+    MapComponent,
     MessagesComponent
   ],
   imports: [
@@ -143,7 +153,7 @@ const appRoutes: Routes =[
       storageType: 'sessionStorage'
     })
   ],
-  providers: [],
+  providers: [MainGuard, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

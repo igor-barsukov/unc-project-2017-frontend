@@ -10,8 +10,6 @@ export class UserRegistered {
   gender:Gender
   city:City;
 
-
-
   constructor(id:number, firstName:string, lastName:string, email:string, password:string, gender:Gender, city:City) {
       this.id = id;
       this.firstName = firstName;

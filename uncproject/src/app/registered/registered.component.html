@@ -1,15 +1,15 @@
 <div class="container">
   <div class="col-md-12">
-    <form class="form-horizontal" #f="ngForm"  novalidate
+    <form class="form-horizontal" #f="ngForm" novalidate
           (ngSubmit)="addOrUpdateUser(f.value, f.valid)">
       <div class="form-group">
         <div style="float: left; margin:0 10px 0 0">
-          <input class="form-control" name="firstName" placeholder="First name"
-                 [(ngModel)]="form.firstName" #firstname="ngModel" minlength="2" maxlength="8" required/>
-        </div>
-        <div>
           <input class="form-control" name="lastName" placeholder="Last name"
                  [(ngModel)]="form.lastName" #lastname="ngModel" minlength="2" maxlength="8" required/>
+        </div>
+        <div>
+          <input class="form-control" name="firstName" placeholder="First name"
+                 [(ngModel)]="form.firstName" #firstname="ngModel" minlength="2" maxlength="8" required/>
         </div>
         <small
           [hidden]="(firstname.valid || (firstname.pristine && !f.submitted))&&(lastname.valid || (lastname.pristine && !f.submitted))">
@@ -47,7 +47,7 @@
         </small>
       </div>
       <div class="form-group">
-        <select  class="form-control form-input" name="gender"
+        <select class="form-control form-input" name="gender"
                 [(ngModel)]="form.gender" #gender="ngModel" required>
           <option value="" hidden selected>Gender</option>
           <option value="1">Male</option>
@@ -57,22 +57,57 @@
           Gender is required
         </small>
       </div>
+
+
       <div class="form-group" style="margin-bottom: 10px">
-        <select class="form-control form-input" name="city"
-                [(ngModel)]="form.country" #location="ngModel" required>
+        <select  class="form-control form-input" name="country" (change)="setCountryId(form.country)"
+                [(ngModel)]="form.country" #country="ngModel" required>
           <option value="" hidden selected>Country</option>
-          <option value="{{city?.id}}"  *ngFor="let city of (listCities | slice:listCities.length - listCities.length)">{{city?.name}}</option>
+          <option value="{{country?.id}}" *ngFor="let country of (listCities | slice:listCities.length - listCities.length)">
+            {{country?.name}}
+          </option>
 
         </select>
-        <small [hidden]="location.valid ||  (location.pristine && !f.submitted)">
-          Location is required
+        <small [hidden]="country.valid ||  (country.pristine && !f.submitted)">
+          Country is required
+        </small>
+
+        <small [hidden]="country.pristine ">
+          <select class="form-control form-input location" name="state" (change)="setStateId(form.state)"
+                  [(ngModel)]="form.state" #state="ngModel" required>
+            <option value="" hidden selected>State</option>
+            <option value="{{state?.id}}"
+                    *ngFor="let state of (listStateOfTheCountry | slice:listStateOfTheCountry.length - listStateOfTheCountry.length)">
+              {{state?.name}}
+            </option>
+          </select>
+
+          <small [hidden]="state.valid ||  (state.pristine && !f.submitted)">
+            State is required
+          </small>
+
+          <small [hidden]="state.pristine ">
+            <select class="form-control form-input location" name="city"
+                    [(ngModel)]="form.city" #city="ngModel" required>
+              <option value="" hidden selected>City</option>
+              <option value="{{city?.id}}"
+                      *ngFor="let city of (listCityesOfTheState | slice:listCityesOfTheState.length - listCityesOfTheState.length)">
+                {{city?.name}}
+              </option>
+            </select>
+
+            <small [hidden]="city.valid ||  (city.pristine && !f.submitted)">
+              City is required
+            </small>
+          </small>
         </small>
       </div>
+
+
       <div class="form-group" style="margin-bottom: 10px">
         <div class="checkbox" style="padding-top: 5px;">
           <label>
-            <input type="checkbox" name="checkbox" [(ngModel)]="form.remember" #remember="ngModel"
-                   [ngModelOptions]="{standalone: true}"> Remember me
+            <input  #remembercb type="checkbox" (change)="remember = remembercb.checked"> Remember me
           </label>
         </div>
       </div>

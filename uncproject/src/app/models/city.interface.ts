@@ -5,6 +5,6 @@ export class City {
       this.name = name;
       }
 
-  public id:string;
+    public id:string;
     public name:string;
 }
