@@ -46,6 +46,7 @@ import {MainGuard} from "./guards/main.guard";
 import {LoginGuard} from "./guards/login.guard";
 import { MapComponent } from './map/map.component';
 import { MessagesComponent } from './messages/messages.component';
+import {TripService} from "./services/trip.service";
 
 const userRoutes: Routes = [
   { path: 'user-account', component: UserAccountComponent},
@@ -72,11 +73,6 @@ const tripRoutes: Routes = [
   { path: 'day/:id', component: TripDayFieldComponent, children: eventRoutes}
 ];
 
-
-// const tripPlaningRoutes: Routes = [
-//   { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
-// ];
-
 const profileRoutes: Routes = [
   { path: 'account', component: ProfileAccountComponent},
   { path: 'password', component: ProfilePasswordComponent},
@@ -98,7 +94,6 @@ const appRoutes: Routes =[
   { path: 'login', component: SignInComponent},
   { path: 'user/:id', component: UserComponent,children:userRoutes},
   { path: '**', component: NotFoundComponent },
-
 ];
 
 @NgModule({
@@ -153,7 +148,7 @@ const appRoutes: Routes =[
       storageType: 'sessionStorage'
     })
   ],
-  providers: [MainGuard, LoginGuard],
+  providers: [MainGuard, LoginGuard,TripService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -76,6 +76,7 @@ export class MapComponent {
           '</strong><br>' +
           place.formatted_address + '<br>' +
           '<input type="button" value="Add sight" onclick="addSight()"></div>'
+        
         alert(sight.name);
         alert(sight.geometry.location);
         
