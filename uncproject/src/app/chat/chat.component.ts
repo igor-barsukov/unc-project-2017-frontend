@@ -2,11 +2,24 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatService } from './chat.service';
 import {Subscription} from 'rxjs/Rx';
 import {ActivatedRoute} from '@angular/router';
-import {User} from '../models/user.interface';
 import {HttpService} from '../services/http.service';
 import {Response} from '@angular/http';
+import { ChatTravel } from '../models/chat-travel.interface';
+import { LocalStorageService } from 'angular-2-local-storage';
+import {Trip} from '../models/trips.interface';
+import {User} from '../models/user.interface';
+import {Gender} from '../models/gender.interface';
+import {Country} from '../models/country.interface';
+import {City} from '../models/city.interface';
+import {State} from '../models/state.interface';
 
-
+export class ChatForm{
+  id: number;
+  sendTime: Date;
+  travel: number;
+  body: string;
+  sender: string;
+}
 
 @Component({
   selector: 'app-chat',
@@ -15,16 +28,14 @@ import {Response} from '@angular/http';
   providers: [ChatService, HttpService]
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  messages = [];
+  date: Date;
+  user: User;
+  message: ChatTravel = new  ChatTravel(null, this.date, '', new Trip(), new User(null, '', '', '', '', '', new Gender('', ''), new City('', ''), ''));
   connection;
-  message;
-  public userProfile: User;
+  messages: ChatTravel[] = [];
   private id: number;
   private routeSubscription: Subscription;
-  date: Date;
-
-  //message: Message = new Message('', '');
-  //messages: Message[] = [];
+  chatForm: ChatForm;
 
   constructor(private chatService: ChatService, private route: ActivatedRoute, private httpService: HttpService) {
     this.routeSubscription = route.params.subscribe(params => this.id = params['id']);
@@ -34,22 +45,38 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   sendMessage() {
     this.chatService.sendMessage(this.message);
-    this.message = '';
-    //this.message.myDate = this.date.toString();
-    //this.messages.push({msg: this.message.msg, myDate: this.message.myDate});
+    this.httpService.sendChatMessage(this.message);
+    this.message = new ChatTravel(this.id, new Date(), '', new Trip(), new User(null, '', localStorage.getItem('firstName'), '', '', '', new Gender('', ''), new City('', ''), ''));
+   /* this.message.body = '';
+    this.message.sendTime = this.date;
+    this.message.sender = new User(null, '', localStorage.getItem('firstName'), '', '', '', new Gender('', ''), new City('', ''), '');  // localStorage.getItem('firstName');
+    this.message.id = this.id;*/
   }
 
-  ngOnInit() {
-    this.connection = this.chatService.getMessages().subscribe(message => {
-      this.messages.push(message);
-    });
 
-    this.httpService.getUser(this.id)
-      .subscribe((resp: Response) => {
-        const user = resp.json();
-        if (user)
-          this.userProfile = user;
+  ngOnInit() {
+
+    this.chatForm = {
+      id: null,
+      sendTime: new Date(),
+      body: '',
+      travel: null,
+      sender: ''
+    };
+
+      this.connection = this.chatService.getMessages().subscribe(message => {
+      this.messages.push(this.message);
       });
+
+   /* this.httpService.getChatMessages(this.id)
+      .subscribe((resp: Response) => {
+        const messageList = resp.json();
+        for (const index in messageList){
+          console.log(messageList[index]);
+          const message = messageList[index];
+          this.messages.push(message);
+        }
+      });*/
   }
 
   ngOnDestroy() {
