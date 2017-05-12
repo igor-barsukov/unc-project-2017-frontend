@@ -35,7 +35,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   messages: ChatTravel[] = [];
   private id: number;
   private routeSubscription: Subscription;
-  chatForm: ChatForm;
 
   constructor(private chatService: ChatService, private route: ActivatedRoute, private httpService: HttpService) {
     this.routeSubscription = route.params.subscribe(params => this.id = params['id']);
@@ -46,27 +45,29 @@ export class ChatComponent implements OnInit, OnDestroy {
   sendMessage() {
     this.chatService.sendMessage(this.message);
     this.httpService.sendChatMessage(this.message);
-    this.message = new ChatTravel(this.id, new Date(), '', new Trip(), new User(null, '', localStorage.getItem('firstName'), '', '', '', new Gender('', ''), new City('', ''), ''));
-   /* this.message.body = '';
-    this.message.sendTime = this.date;
-    this.message.sender = new User(null, '', localStorage.getItem('firstName'), '', '', '', new Gender('', ''), new City('', ''), '');  // localStorage.getItem('firstName');
-    this.message.id = this.id;*/
+    //this.message = new ChatTravel(this.id, new Date(), '', new Trip(), new User(null, '', localStorage.getItem('firstName'), '', '', '', new Gender('', ''), new City('', ''), ''));
+    //this.message.body = '';
+    this.message.sendTime = new Date();
+    this.message.sender = new User(parseInt(localStorage.getItem('id')), '', localStorage.getItem('firstName'), '', '', '', new Gender('', ''), new City('', ''), '');  // localStorage.getItem('firstName');
+    this.message.id = this.id;
+    this.message.travel = new Trip();
+    this.message = new ChatTravel(this.message.id, this.message.sendTime, '', this.message.travel, this.message.sender);
   }
 
 
   ngOnInit() {
 
-    this.chatForm = {
+    /*this.chatForm = {
       id: null,
       sendTime: new Date(),
       body: '',
       travel: null,
       sender: ''
-    };
+    };*/
 
-      this.connection = this.chatService.getMessages().subscribe(message => {
+    this.connection = this.chatService.getMessages().subscribe(message => {
       this.messages.push(this.message);
-      });
+    });
 
    /* this.httpService.getChatMessages(this.id)
       .subscribe((resp: Response) => {

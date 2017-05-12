@@ -1,6 +1,6 @@
 <div class="container">
-  <ul class="gn-menu-main" style="border-bottom: 1px solid #c6d0da">
-    <li class="gn-trigger">
+  <ul class="gn-menu-main" style="border-bottom: 1px solid #c6d0da" >
+    <li class="gn-trigger" style="float: right">
       <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
       <nav class="gn-menu-wrapper" style="border-right:1px solid #c6d0da">
         <div class="gn-scroller">
@@ -16,9 +16,17 @@
         </div><!-- /gn-scroller -->
       </nav>
     </li>
-    <li style="float: right"><a routerLink="/registered"><span>Sign up</span></a></li>
-    <li style="float: right"><a routerLink="/login"><span>Sign in</span></a></li>
+    <li>
+      <input type="text" [(ngModel)] = "term" >
+      <div *ngFor = "let item of items | filter:term | slice: items.length - 5">
+        <p style="background: #fff;max-height: 200px;">
+          <a routerLink="/user/{{item?.id}}">{{item?.lastName}}</a>
+        </p>
+      </div>
+    </li>
 
+    <li style="float: right; border: none"><a routerLink="/registered"><span>Sign up</span></a></li>
+    <li style="float: right; border: none"><a routerLink="/login"><span>Sign in</span></a></li>
   </ul>
 
 </div><!-- /container -->

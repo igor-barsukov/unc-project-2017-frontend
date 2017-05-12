@@ -10,7 +10,7 @@ export class ChatService {
 
 
   sendMessage(obj: ChatTravel){
-    this.socket.emit('add-message', ChatTravel);
+    this.socket.emit('add-message', obj);
   }
 
 

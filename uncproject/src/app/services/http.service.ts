@@ -124,6 +124,13 @@ export class HttpService {
             });
     }
 
+    getAllUsers() {
+      return this.http.get('http://localhost:8181/users')
+        .catch((error: any) => {
+          return Observable.throw(error);
+        });
+    }
+
     sendChatMessage(obj: ChatTravel) {
       const csrf_token = jQuery('meta[name=\'_csrf\']').attr('content');
       const csrf_token_name = jQuery('meta[name=\'_csrf_header\']').attr('content');
