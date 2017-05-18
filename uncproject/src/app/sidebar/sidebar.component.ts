@@ -26,18 +26,16 @@ export class Items{
 })
 export class SidebarComponent implements OnInit {
   public id: number;
-  public regUser: boolean;
   public items: User[]= [];
   public userId: number;
   private routeSubscription: Subscription;
 
 
   constructor(private _location: Location, private routing: Router,  private route: ActivatedRoute, private sidebarEl: ElementRef, private httpService: HttpService, private localStorageService: LocalStorageService) {
-    this.routeSubscription = this.route.params.subscribe(params => this.userId = params['id']);
+    this.routeSubscription = this.route.params.subscribe(params => this.id = params['id']);
   }
 
   ngOnInit() {
-    //// localStorage.setItem('id',"1");
     new gnMenu(this.sidebarEl.nativeElement.querySelector('.gn-menu-main'));
     this.id = parseInt(localStorage.getItem('id'));
     console.log(localStorage.getItem('id'));
@@ -51,26 +49,30 @@ export class SidebarComponent implements OnInit {
         }
       });
 
+    if (localStorage.getItem('id') !== 'null' ){
+          document.getElementById('reg').style.display = 'none';
+          document.getElementById('log').style.display = 'none';
+      document.getElementById('menu').style.display = 'block';
+      document.getElementById('srch').style.display = 'block';
+        }else {
+          document.getElementById('menu').style.display = 'none';
+          document.getElementById('srch').style.display = 'none';
+      document.getElementById('reg').style.display = 'block';
+      document.getElementById('log').style.display = 'block';
+        }
+        return this.id;
+
   }
+
   logout() {
     this.id = null;
     localStorage.setItem('id', null);
     console.log(localStorage.getItem('id'));
   }
 
-  ifReg(){
-    if (localStorage.getItem('id') !== 'null' ){
-      this.regUser = true;
-    }else {
-      this.regUser = false;
-    }
-    return this.regUser;
-  }
-
   goToUser(uid) {
     this.routing.navigateByUrl('/user/' + uid);
     console.log(uid);
   }
-
 
 }

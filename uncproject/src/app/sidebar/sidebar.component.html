@@ -1,7 +1,7 @@
 <div class="container" >
   <ul class="gn-menu-main" style="border-bottom: 1px solid #c6d0da" >
     <li></li>
-    <li class="gn-trigger" style="float: right">
+    <li id="menu" class="gn-trigger" style="float: right">
       <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
       <nav class="gn-menu-wrapper" style="border-right:1px solid #c6d0da">
         <div class="gn-scroller">
@@ -18,10 +18,10 @@
       </nav>
     </li>
 
-    <li>
-        <span class="fa fa-search"></span>
+    <li id="srch" style="float: right; border: none">
         <input type="text" id="search" placeholder="Search"  [(ngModel)] = "term" (click)="showList = !showList" style="border: none">
-        <div *ngIf="showList">
+        <span class="fa fa-search"></span>
+      <div *ngIf="showList">
           <ul  *ngFor = "let item of items |filter:term | slice:0:5 " style="background: white">
             <li>
               <a routerLink="user/{{item.id}}" (click)="showList = !showList; term = ''; goToUser(item.id)">{{item.lastName}} {{item.firstName}}</a>
@@ -29,8 +29,8 @@
           </ul>
         </div>
     </li>
-    <li style="float: right; border: none"><a routerLink="/registered"><span>Sign up</span></a></li>
-    <li style="float: right; border: none"><a routerLink="/login"><span>Sign in</span></a></li>
+    <li id="reg" style="float: right; border: none"><a routerLink="/registered"><span>Sign up</span></a></li>
+    <li id="log" style="float: right; border: none"><a routerLink="/login"><span>Sign in</span></a></li>
   </ul>
 
 </div><!-- /container -->

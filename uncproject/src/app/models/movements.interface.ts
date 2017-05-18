@@ -1,17 +1,21 @@
-import {Trip} from './trips.interface';
-import {Transport} from './transport.interface';
+import {Trip} from "./trips.interface";
+import {Transport} from "./transport.interface";
+import {Coordinates} from "./coordinates.interface";
+
 /**
  * Created by Сергей on 11.05.2017.
  */
 export class Movement{
-    constructor(id: number, transport: Transport, travel: Trip, start_time: Date, end_time: Date, start_address: string, destination_address: string, price: number, distance: number, description: string, ticket: string, start_coordinates: number, destination_coordinates: number) {
+
+
+    constructor(id:number, transport:Transport, travel:Trip, startTime:Date, endTime:Date, startAddress:string, destinationAddress:string, price:number, distance:number, description:string, ticket:string, start_coordinates:Coordinates, destination_coordinates:Coordinates) {
         this.id = id;
         this.transport = transport;
         this.travel = travel;
-        this.start_time = start_time;
-        this.end_time = end_time;
-        this.start_address = start_address;
-        this.destination_address = destination_address;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.startAddress = startAddress;
+        this.destinationAddress = destinationAddress;
         this.price = price;
         this.distance = distance;
         this.description = description;
@@ -20,17 +24,17 @@ export class Movement{
         this.destination_coordinates = destination_coordinates;
     }
 
-    id: number;
-    transport: Transport;
-    travel: Trip;
-    start_time: Date;
-    end_time: Date;
-    start_address: string;
-    destination_address: string;
-    price: number;
-    distance: number;
-    description: string;
-    ticket: string;
-    start_coordinates: number;
-    destination_coordinates: number;
+    id:number;
+    transport:Transport;
+    travel:Trip;
+    startTime:Date;
+    endTime:Date;
+    startAddress:string;
+    destinationAddress:string;
+    price:number;
+    distance:number;
+    description:string;
+    ticket:string;
+    start_coordinates: Coordinates;
+    destination_coordinates: Coordinates;
 }
