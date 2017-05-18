@@ -39,3 +39,8 @@ app-datepicker .modal-sm {
 .trip-input{
     margin-left: 100px;
 }
+small{
+    margin-left: 20px;
+    color: red;
+}
+input.ng-touched.ng-invalid {border:solid red 1.5px;}

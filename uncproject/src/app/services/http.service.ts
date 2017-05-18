@@ -9,7 +9,7 @@ import {UserRegistered} from '../models/user-registered.interface';
 import {UserSignIn} from '../sign-in/user.sign-in.interface';
 import {User} from '../models/user.interface';
 import {Trip} from '../models/trips.interface';
-import {ChatTravel} from '../models/chat-travel.interface';
+import {chatMessage} from '../models/chatMessage.inerface';
 
 declare var jQuery: any;
 
@@ -125,30 +125,7 @@ export class HttpService {
     }
 
     getAllUsers() {
-      return this.http.get('http://localhost:8181/users')
-        .catch((error: any) => {
-          return Observable.throw(error);
-        });
-    }
-
-    sendChatMessage(obj: ChatTravel) {
-      const csrf_token = jQuery('meta[name=\'_csrf\']').attr('content');
-      const csrf_token_name = jQuery('meta[name=\'_csrf_header\']').attr('content');
-      const headers = new Headers({
-        'Content-Type': 'application/json;charset=utf-8'
-      });
-      if (csrf_token_name && csrf_token)
-        headers.set(csrf_token_name, csrf_token);
-
-      return this.http.post('http://localhost:8181/chatTravels', obj, {headers: headers})
-        .map((resp: Response) => resp.json())
-        .catch((error: any) => {
-          return Observable.throw(error);
-        });
-    }
-
-    getChatMessages(id: number) {
-      return this.http.get('http://localhost:8181/chatTravels' + id)
+      return this.http.get('http://localhost:8181/users/')
         .catch((error: any) => {
           return Observable.throw(error);
         });
@@ -168,6 +145,7 @@ export class HttpService {
                 return Observable.throw(error);
             });
     }
+
     getTrip(id: number){
         return this.http.get('http://localhost:8181/travels/' + id)
             .map((resp: Response) => resp.json())
@@ -175,4 +153,43 @@ export class HttpService {
                 return Observable.throw(error);
             });
     }
+
+  gerActivitiesToTrip(idTrip: number){
+    return this.http.get('http://localhost:8181/activities/travel/' + idTrip)
+      .map((resp: Response) => resp.json())
+      .catch((error: any) => {
+        return Observable.throw(error);
+      });
+  }
+  gerMovementToTrip(idTrip: number){
+    return this.http.get('http://localhost:8181/movements/travel/' + idTrip)
+      .map((resp: Response) => resp.json())
+      .catch((error: any) => {
+        return Observable.throw(error);
+      });
+  }
+
+  sendChatMessage(obj: chatMessage) {
+    const csrf_token = jQuery('meta[name=\'_csrf\']').attr('content');
+    const csrf_token_name = jQuery('meta[name=\'_csrf_header\']').attr('content');
+    const headers = new Headers({
+      'Content-Type': 'application/json;charset=utf-8'
+    });
+    if (csrf_token_name && csrf_token)
+      headers.set(csrf_token_name, csrf_token);
+
+    return this.http.post('http://localhost:8181/chatTravels', obj, {headers: headers})
+      .map((resp: Response) => resp.json())
+      .catch((error: any) => {
+        return Observable.throw(error);
+      });
+  }
+
+  getChatMessages(id: number){
+    return this.http.get('http://localhost:8181/chatTravels/travel=' + id)
+      .map((resp: Response) => resp.json())
+      .catch((error: any) => {
+        return Observable.throw(error);
+      });
+  }
 }

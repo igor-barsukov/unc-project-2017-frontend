@@ -6,44 +6,51 @@ import {TripService} from "../services/trip.service";
 import {Trip} from "../models/trips.interface";
 import {Day} from "../models/day.interface";
 import {Activities} from "../models/activities.interface";
+import {Movement} from "../models/movements.interface";
 
 @Component({
     selector: 'app-trip-planning',
     templateUrl: './trip-planning.component.html',
     styleUrls: ['./trip-planning.component.css'],
-    providers: [HttpService]
+    providers: [HttpService, TripService]
 })
 export class TripPlanningComponent implements OnInit, OnDestroy {
     showDialog = false;
-    
-    public days:Day[];
-    public i:number = 1;
     private id:number;
     private routeSubscription:Subscription;
-
-    nameDay:Date = new Date();
+    public days:Day[];
+    public trip:Trip;
+    private subOne:any;
 
     ngOnInit() {
+        this.days = [new Day(1, new Date(), [])];
     }
 
     constructor(private route:ActivatedRoute, private httpService:HttpService, private tripService:TripService) {
-        this.days = [new Day(1, new Date(),[])];
+
+        
         this.routeSubscription = route.params.subscribe(params=>this.id = params['id']);
-        tripService.nameDay$.subscribe(
-            nameDay => {    
-                this.days[0].name = new Date(nameDay);
-                this.nameDay = new Date(nameDay);
+
+        this.subOne = tripService.nameDay$.subscribe(
+            nameDay => {
+                this.days = nameDay;
             });
     }
 
     addDay() {
-        this.i += 1;
-        this.nameDay.setDate(this.nameDay.getDate()+1);
-        this.days.push({id: this.i, name: this.nameDay, activities:[]});
-        this.tripService.addDay(this.i, this.nameDay);
+        this.days.push(new Day(this.days[this.days.length - 1].id + 1,
+            new Date(this.days[this.days.length - 1].name.valueOf() + 24 * 60 * 60 * 1000), []));
+        this.trip = this.tripService.getTrip();
+        this.trip.endDate = this.days[this.days.length - 1].name;
+
+        // this.httpService.updateTrip(this.trip)
+        //     .subscribe((data) => {
+        //         this.trip = data;
+        //     });
     }
 
     ngOnDestroy() {
         this.routeSubscription.unsubscribe();
+        this.subOne.unsubscribe();
     }
 }

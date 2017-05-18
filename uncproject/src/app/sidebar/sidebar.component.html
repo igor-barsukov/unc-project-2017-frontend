@@ -1,5 +1,6 @@
-<div class="container">
+<div class="container" >
   <ul class="gn-menu-main" style="border-bottom: 1px solid #c6d0da" >
+    <li></li>
     <li class="gn-trigger" style="float: right">
       <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
       <nav class="gn-menu-wrapper" style="border-right:1px solid #c6d0da">
@@ -10,33 +11,37 @@
             <li><a routerLink="account/{{id}}/trips/"><i class="fa fa-map-marker fa-2x i-position" aria-hidden="true" style=" margin:0 20px 0 20px;"></i>Trips</a></li>
             <li><a routerLink="map"><i class="fa fa-map fa-2x i-position" aria-hidden="true" style="margin-right: 15px;" ></i>Map</a></li>
             <li><a routerLink="account/{{id}}/album"><i class="fa fa-picture-o fa-2x i-position" aria-hidden="true"></i>Photos</a></li>
-            <li (click)="showMsgDialog = !showMsgDialog" data-toggle="modal"><a><i class="fa fa-envelope fa-2x i-position" aria-hidden="true"></i>Messages</a></li>
+           <!--// <li (click)="showMsgDialog = !showMsgDialog" data-toggle="modal"><a><i class="fa fa-envelope fa-2x i-position" aria-hidden="true"></i>Messages</a></li>-->
             <li><a (click)="logout()"><i class="fa fa-sign-out fa-2x i-position" aria-hidden="true"></i>Log out</a></li>
           </ul>
         </div><!-- /gn-scroller -->
       </nav>
     </li>
-    <li>
-      <input type="text" [(ngModel)] = "term" >
-      <div *ngFor = "let item of items | filter:term | slice: items.length - 5">
-        <p style="background: #fff;max-height: 200px;">
-          <a routerLink="/user/{{item?.id}}">{{item?.lastName}}</a>
-        </p>
-      </div>
-    </li>
 
+    <li>
+        <span class="fa fa-search"></span>
+        <input type="text" id="search" placeholder="Search"  [(ngModel)] = "term" (click)="showList = !showList" style="border: none">
+        <div *ngIf="showList">
+          <ul  *ngFor = "let item of items |filter:term | slice:0:5 " style="background: white">
+            <li>
+              <a routerLink="user/{{item.id}}" (click)="showList = !showList; term = ''; goToUser(item.id)">{{item.lastName}} {{item.firstName}}</a>
+            </li>
+          </ul>
+        </div>
+    </li>
     <li style="float: right; border: none"><a routerLink="/registered"><span>Sign up</span></a></li>
     <li style="float: right; border: none"><a routerLink="/login"><span>Sign in</span></a></li>
   </ul>
 
 </div><!-- /container -->
 
-<!--SightsDialog-->
-<app-dialog [(visible)]="showMsgDialog">
-  <div class="modal-content">
-    <app-messages></app-messages>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="showMsgDialog = !showMsgDialog">Close</button>
-    </div>
-  </div>
-</app-dialog>
+
+<!--&lt;!&ndash;SightsDialog&ndash;&gt;-->
+<!--<app-dialog [(visible)]="showMsgDialog">-->
+  <!--<div class="modal-content">-->
+    <!--<app-messages></app-messages>-->
+    <!--<div class="modal-footer">-->
+      <!--<button type="button" class="btn btn-primary" (click)="showMsgDialog = !showMsgDialog">Close</button>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</app-dialog>-->

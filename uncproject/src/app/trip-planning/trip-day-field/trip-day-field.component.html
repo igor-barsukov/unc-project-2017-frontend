@@ -1,229 +1,222 @@
 <div class="container-fluid">
-    <button class="btn btn-primary pull-right" (click)="staticModal.show()">
-        New event
-        <span class="caret"></span>
-    </button>
+    <div>
+        <button class="btn btn-primary pull-right" (click)="staticModal.show()">
+            New event
+            <span class="caret"></span>
+        </button>
+        <h3 style="text-align: center">Day {{tripDay.id}} : {{tripDay.name | date :'fullDate' }}</h3>
+    </div>
+    <div class="activities">
 
-    <table class="table table-hover">
-        <tr>
-            <td>00:00 - 01:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(0)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>01:00 - 02:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(1)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>02:00 - 03:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(2)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>03:00 - 04:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(3)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>04:00 - 05:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(4)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time |date :'H:mm'}}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>05:00 - 06:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(5)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>06:00 - 07:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(6)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>07:00 - 08:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(7)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>08:00 - 09:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(8)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>09:00 - 10:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(9)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>10:00 - 11:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(10)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>11:00 - 12:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(11)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>12:00 - 13:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(12)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>13:00 - 14:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(13)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>14:00 - 15:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(14)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>15:00 - 16:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(15)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>16:00 - 17:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(16)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>17:00 - 18:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(17)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>18:00 - 19:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(18)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>19:00 - 20:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(19)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>20:00 - 21:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(20)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>21:00 - 22:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(21)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>22:00 - 23:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(22)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-        <tr>
-            <td>23:00 - 00:00</td>
-        </tr>
-        <tr *ngFor="let activity of sortActivities(23)">
-            <td>{{activity?.id}}</td>
-            <td>{{activity?.name}}</td>
-            <td>{{activity?.start_time | date :'H:mm' }}</td>
-            <td>{{activity?.end_time | date :'H:mm'}}</td>
-        </tr>
-    </table>
+        <div class="panel-group" style="margin-bottom: 10px" id="accordion"
+             *ngFor="let action of tripDay.action; let i = index">
+            <div *ngIf="isActivity(action)" class="panel panel-default">
+                <div class="panel-heading" style="min-height: 55px">
+
+                    <div class="col-md-8" style="padding-top: 10px">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#{{i+1}}">
+                                Start time: {{action?.startTime | date :'HH:mm'}}
+                                Name: {{action?.name}}
+                            </a>
+
+                        </h4>
+                    </div>
+                    <div class="col-md-4" style="text-align: right">
+                        <i class="fa fa-bed" aria-hidden="true"></i>
+                        <button type="button" class="btn btn-primary btn-action">
+                            <i class="fa  fa-times fa-lg " aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="{{i+1}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <form class="form-horizontal" #someForm="ngForm"
+                              (ngSubmit)="updateActivity(someForm,action?.id)">
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Name: </h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.name" class="form-control"
+                                           type="text" id="name" name="name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Start date:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.startTime| date :'dd.MM.yyyy HH:mm'" class="form-control"
+                                           type="datetime-local" id="startTime" name="startTime">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>End date:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.endTime| date :'dd.MM.yyyy HH:mm'" class="form-control"
+                                           type="datetime-local" id="endTime" name="endTime">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Address:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.address" class="form-control"
+                                           type="text" id="address" name="address">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Price:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.price" class="form-control" type="text" id="price"
+                                           name="price">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Description:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.description" class="form-control" type="text"
+                                           id="description"
+                                           name="description">
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div *ngIf="isMovement(action)" class="panel panel-default">
+                <div class="panel-heading" style="min-height: 55px">
+                    <div class="col-md-8" style="padding-top: 10px">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#{{i+1}}">
+                                Start time: {{action?.startTime | date :'HH:mm' }}
+                                Start address: {{action?.startAddress}}
+                            </a>
+
+
+                        </h4>
+                    </div>
+                    <div class="col-md-4" style="text-align: right">
+                        <div>
+                            <i *ngIf="action.transport.name == 'car'" class="fa fa-car fa-lg" aria-hidden="true"></i>
+                            <i *ngIf="action.transport.name == 'plane'" class="fa fa-plane fa-lg"
+                               aria-hidden="true"></i>
+                            <i *ngIf="action.transport.name == 'rail'" class="fa fa-train fa-lg" aria-hidden="true"></i>
+                            <i *ngIf="action.transport.name == 'bus'" class="fa fa-bus fa-lg" aria-hidden="true"></i>
+                            <button type="button" class="btn btn-primary btn-action">
+                                <i class="fa  fa-times fa-lg" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="{{i+1}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <form class="form-horizontal" #movementForm="ngForm"
+                              (ngSubmit)="updateMovement(movementForm, action?.id, action?.transport)">
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Start date:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.startTime| date :'dd.MM.yyyy HH:mm'" class="form-control"
+                                           type="datetime-local" id="startTime" name="startTime">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>End date:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.endTime| date :'dd.MM.yyyy HH:mm'" class="form-control"
+                                           type="datetime-local" id="endTime" name="endTime">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Start address:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.startAddress" class="form-control"
+                                           type="text" id="startAddress" name="startAddress">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Destination address:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.destinationAddress" class="form-control"
+                                           type="text" id="destinationAddress" name="destinationAddress">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Price:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.price" class="form-control" type="text" id="price"
+                                           name="price">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Distance:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.distance" class="form-control" type="text" id="distance"
+                                           name="distance">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <h4>Description:</h4>
+                                </div>
+                                <div class="col-md-9">
+                                    <input [ngModel]="action?.description" class="form-control" type="text"
+                                           id="description"
+                                           name="description">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="newEvent">
-        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog"
+        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: false}" tabindex="-1"
+             role="dialog"
              aria-labelledby="mySmallModalLabl" aria-hidden="true">
 
             <div class="model-dialog modal-sm">

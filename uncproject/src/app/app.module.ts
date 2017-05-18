@@ -10,43 +10,43 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import {Routes, RouterModule} from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 
-import {EqualValidator} from "./directives/equal-validator.directive";
+import {EqualValidator} from './directives/equal-validator.directive';
 import { UserComponent } from './user/user.component';
-import {CarouselComponent} from "./home/carousel/carousel.component";
+import {CarouselComponent} from './home/carousel/carousel.component';
 import { HomeTripsComponent } from './home/home-trips/home-trips.component';
-import {BusDialogComponent} from "./trip-planning/bus-dialog/bus-dialog.component";
-import {CarDialogComponent} from "./trip-planning/car-dialog/car-dialog.component";
-import {RailDialogComponent} from "./trip-planning/rail-dialog/rail-dialog.component";
-import {FlightDialogComponent} from "./trip-planning/flight-dialog/flight-dialog.component";
-import {LodgingComponent} from "./trip-planning/lodging-dialog/lodging.component";
-import {SightsComponent} from "./trip-planning/sights-dialog/sights.component";
-import {TripDayFieldComponent} from "./trip-planning/trip-day-field/trip-day-field.component";
-import {TripInfoFieldComponent} from "./trip-planning/trip-info-field/trip-info-field.component";
-import {DialogComponent} from "./trip-planning/dialog/dialog.component";
-import {TripPlanningComponent} from "./trip-planning/trip-planning.component";
+import {BusDialogComponent} from './trip-planning/bus-dialog/bus-dialog.component';
+import {CarDialogComponent} from './trip-planning/car-dialog/car-dialog.component';
+import {RailDialogComponent} from './trip-planning/rail-dialog/rail-dialog.component';
+import {FlightDialogComponent} from './trip-planning/flight-dialog/flight-dialog.component';
+import {LodgingComponent} from './trip-planning/lodging-dialog/lodging.component';
+import {SightsComponent} from './trip-planning/sights-dialog/sights.component';
+import {TripDayFieldComponent} from './trip-planning/trip-day-field/trip-day-field.component';
+import {TripInfoFieldComponent} from './trip-planning/trip-info-field/trip-info-field.component';
+import {DialogComponent} from './trip-planning/dialog/dialog.component';
+import {TripPlanningComponent} from './trip-planning/trip-planning.component';
 import { TransportationComponent } from './trip-planning/transportation/transportation.component';
 import { DatepickerModule } from 'ng2-bootstrap/datepicker';
 import { ModalModule } from 'ng2-bootstrap/modal';
-import {DatepickerComponent} from "./trip-planning/datepicker/datepicker.component";
+import {DatepickerComponent} from './trip-planning/datepicker/datepicker.component';
 import { ChatComponent } from './chat/chat.component';
 import {MomentModule} from 'angular2-moment';
-import {UserAccountComponent} from "./user/user-account/user-account.component";
-import {UserAlbumsComponent} from "./user/user-albums/user-albums.component";
-import {UserTripsComponent} from "./user/user-trips/user-trips.component";
+import {UserAccountComponent} from './user/user-account/user-account.component';
+import {UserAlbumsComponent} from './user/user-albums/user-albums.component';
+import {UserTripsComponent} from './user/user-trips/user-trips.component';
 import { AccountComponent } from './account/account.component';
-import {ProfilePhotosComponent} from "./account/profile-photos/profile-photos.component";
-import {TripsComponent} from "./account/trips/trips.component";
-import {ProfileAccountComponent} from "./account/profile/profile-account/profile-account.component";
-import {ProfilePasswordComponent} from "./account/profile/profile-password/profile-password.component";
-import {ProfileEmailComponent} from "./account/profile/profile-email/profile-email.component";
-import {ProfileComponent} from "./account/profile/profile.component";
+import {ProfilePhotosComponent} from './account/profile-photos/profile-photos.component';
+import {TripsComponent} from './account/trips/trips.component';
+import {ProfileAccountComponent} from './account/profile/profile-account/profile-account.component';
+import {ProfilePasswordComponent} from './account/profile/profile-password/profile-password.component';
+import {ProfileEmailComponent} from './account/profile/profile-email/profile-email.component';
+import {ProfileComponent} from './account/profile/profile.component';
 
 import { LocalStorageModule } from 'angular-2-local-storage';
-import {MainGuard} from "./guards/main.guard";
-import {LoginGuard} from "./guards/login.guard";
+import {MainGuard} from './guards/main.guard';
+import {LoginGuard} from './guards/login.guard';
 import { MapComponent } from './map/map.component';
 import { MessagesComponent } from './messages/messages.component';
-import {TripService} from "./services/trip.service";
+import {TripService} from './services/trip.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const userRoutes: Routes = [
@@ -86,14 +86,14 @@ const accountRoutes: Routes = [
   { path: 'album', component: ProfilePhotosComponent, canActivate: [MainGuard, LoginGuard]}
 ];
 
-const appRoutes: Routes =[
+const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'account/:id', component: AccountComponent, children: accountRoutes},
   { path: 'registered', component: RegisteredComponent},
   { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
   { path: 'map', component: MapComponent},
   { path: 'login', component: SignInComponent},
-  { path: 'user/:id', component: UserComponent,children: userRoutes},
+  { path: 'user/:id', component: UserComponent, children: userRoutes},
   { path: '**', component: NotFoundComponent },
 ];
 
@@ -150,7 +150,7 @@ const appRoutes: Routes =[
     }),
     Ng2SearchPipeModule
   ],
-  providers: [MainGuard, LoginGuard,TripService],
+  providers: [MainGuard, LoginGuard, TripService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,16 @@
-
-<div class="chat">
-    <header style="color: blue; text-align: center; font-size: x-large; padding: 10px">Discussion</header>
-  <div class="msg-body">
-    <ul #list class="list" [scrollTop]="list.scrollHeight">
-      <li *ngFor="let msg of messages" style="list-style-type: none">{{msg?.sender.firstName}}<br>{{msg?.text}}<br>{{msg?.sendTime | amTimeAgo}}</li>
-    </ul>
-  </div>
-        <input type="text" class="form-control" [(ngModel)]="message.body"  (keyup.enter)="sendMessage()" placeholder="Type message..." style="box-shadow: #00b3ee" />
+<div class="container">
+    <div class="chat">
+        <header style="color: blue; text-align: center; font-size: x-large; padding: 10px">Discussion</header>
+        <div class="msg-body">
+            <ul #list class="list" [scrollTop]="list.scrollHeight">
+                <li *ngFor="let message of messages" style="list-style-type: none">
+                    {{message.sender.lastName}} {{message.sender.firstName}}<br>
+                    {{message.body}}<br>
+                    {{message.sendTime | date :'dd.MM.yyyy HH:mm' }}<br /><br />
+                </li>
+            </ul>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="msg" (keyup.enter)="sendMessage()"
+               placeholder="Type message..." style="box-shadow: #00b3ee"/>
+    </div>
 </div>
-

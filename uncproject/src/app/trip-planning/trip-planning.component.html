@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" >
     <div class="row">
 
         <div class="planning col-md-3">
             <div class="sidebar-img">
-                <label for="tripAvatar" class="trip-avatar">
+                <label for="tripAvatar" class="trip-avatar trip-avatar">
                     <img src="assets/img/trips/2.jpg" class="img-circle image">
                     <span>Click here to upload</span>
                 </label>
@@ -11,15 +11,18 @@
 
             <div class="sidebar-planning">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a routerLink="/trip-planning/{{id}}/trip-info">Trip info
-                        <i class="fa fa-caret-right" style="float: right"></i>
-                    </a></li>
+                    <li class="active">
+                        <a routerLink="/trip-planning/{{id}}/trip-info">Trip info
+                        <i class="fa fa-caret-right" style="float: right"></i></a>
+                    </li>
+
                     <li *ngFor="let day of days; let index = i">
                         <a routerLink="/trip-planning/{{id}}/day/{{day.id}}">
-                             {{day.name | date:"dd.MM.yyyy"}}
+                            {{day.name | date:"dd.MM.yyyy"}}
                             <i class="fa fa-caret-right" style="float: right"></i>
                         </a>
                     </li>
+
                 </ul>
             </div>
 

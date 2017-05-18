@@ -9,8 +9,6 @@
 }
 
 .panel {
-    height: 420px;
-    margin-left: 30px;
 }
 
 .trippanel button {
@@ -33,4 +31,16 @@
 .trippanel i.fa-close {
     font-size: 1em;
     margin: 0 0 0 70px;
+}
+.activities{
+    margin-top: 20px;
+}
+.btn-action{
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 40px;
+    visibility: hidden;
+}
+.panel:hover .btn-action{
+    visibility: visible;
 }
