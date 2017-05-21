@@ -1,6 +1,6 @@
 <div class="container" >
   <ul class="gn-menu-main" style="border-bottom: 1px solid #c6d0da" >
-    <li></li>
+    <li style="border: none"><img src="assets/img/logo.png"></li>
     <li id="menu" class="gn-trigger" style="float: right">
       <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
       <nav class="gn-menu-wrapper" style="border-right:1px solid #c6d0da">
@@ -24,11 +24,12 @@
       <div *ngIf="showList">
           <ul  *ngFor = "let item of items |filter:term | slice:0:5 " style="background: white">
             <li>
-              <a routerLink="user/{{item.id}}" (click)="showList = !showList; term = ''; goToUser(item.id)">{{item.lastName}} {{item.firstName}}</a>
+              <a (click)="showList = !showList; term = ''; goToUser(item.id); window.location.reload()">{{item.lastName}} {{item.firstName}}</a>
             </li>
           </ul>
         </div>
     </li>
+
     <li id="reg" style="float: right; border: none"><a routerLink="/registered"><span>Sign up</span></a></li>
     <li id="log" style="float: right; border: none"><a routerLink="/login"><span>Sign in</span></a></li>
   </ul>

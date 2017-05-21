@@ -241,20 +241,14 @@
         </div>
     </div>
 
-
     <!--Dialog-->
 
     <app-dialog [(visible)]="showDialogWin">
         <div class="modal-content">
             <router-outlet></router-outlet>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="showDialogWin = !showDialogWin; backClick()">
-                    Close
-                </button>
-                <button type="button" class="btn btn-primary" (click)="showDialogWin = !showDialogWin; backClick()">
-                    Submit
-                </button>
-            </div>
+            <button type="button" class="btn btn-primary" (click)="showDialogWin = !showDialogWin; backClick()">
+                Close
+            </button>
         </div>
     </app-dialog>
 

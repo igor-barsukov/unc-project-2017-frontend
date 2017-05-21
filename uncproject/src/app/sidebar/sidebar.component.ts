@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef} from '@angular/core';
+import {Component, OnInit, ElementRef, OnDestroy} from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import {User} from '../models/user.interface';
 import {HttpService} from '../services/http.service';
@@ -7,16 +7,10 @@ import { Country } from '../models/country.interface';
 import {Location} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
+import { Ng2SearchPipe } from 'ng2-search-filter';
 
 declare var gnMenu: any;
 
-
-
-export class Items{
-  constructor(public id: number,
-    public lastName: string)
-  { }
-}
 
 @Component({
   selector: 'app-sidebar',
@@ -24,15 +18,20 @@ export class Items{
   styleUrls: ['./sidebar.component.css'],
   providers: [HttpService]
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   public id: number;
   public items: User[]= [];
+  user: User;
   public userId: number;
   private routeSubscription: Subscription;
 
 
   constructor(private _location: Location, private routing: Router,  private route: ActivatedRoute, private sidebarEl: ElementRef, private httpService: HttpService, private localStorageService: LocalStorageService) {
     this.routeSubscription = this.route.params.subscribe(params => this.id = params['id']);
+  }
+
+  ngOnDestroy() {
+    this.routeSubscription.unsubscribe();
   }
 
   ngOnInit() {

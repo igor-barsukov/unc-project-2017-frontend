@@ -44,3 +44,24 @@
 .panel:hover .btn-action{
     visibility: visible;
 }
+
+.activities::-webkit-scrollbar{
+  width: 2px;
+}
+
+.activities::-webkit-scrollbar-thumb {
+  border: none;
+  background-color: transparent;
+  max-height: 5px;
+}
+
+.activities:hover::-webkit-scrollbar-thumb{
+  border: none;
+  background-color: transparent;
+  max-height: 20px;
+}
+
+.activities::-webkit-scrollbar-track{
+  border: none;
+  background-color: transparent;
+}

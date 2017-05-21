@@ -23,9 +23,7 @@ export class SignInComponent implements OnInit {
       email: '',
       password: ''
     }
-    //localStorage.setItem('id','3');
-    //localStorage.getItem('id');
-    
+
   }
 
   done:boolean = false;

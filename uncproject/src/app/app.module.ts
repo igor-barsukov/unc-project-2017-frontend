@@ -47,7 +47,8 @@ import {LoginGuard} from './guards/login.guard';
 import { MapComponent } from './map/map.component';
 import { MessagesComponent } from './messages/messages.component';
 import {TripService} from './services/trip.service';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+import { Ng2SearchPipe } from 'ng2-search-filter';
 
 const userRoutes: Routes = [
   { path: 'user-account', component: UserAccountComponent},
@@ -94,7 +95,7 @@ const appRoutes: Routes = [
   { path: 'map', component: MapComponent},
   { path: 'login', component: SignInComponent},
   { path: 'user/:id', component: UserComponent, children: userRoutes},
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
@@ -133,7 +134,8 @@ const appRoutes: Routes = [
     ChatComponent,
     AccountComponent,
     MapComponent,
-    MessagesComponent
+    MessagesComponent,
+    Ng2SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -147,8 +149,8 @@ const appRoutes: Routes = [
       prefix: 'app-root',
       //  storageType: 'localStorage'
       storageType: 'sessionStorage'
-    }),
-    Ng2SearchPipeModule
+    })
+
   ],
   providers: [MainGuard, LoginGuard, TripService],
   bootstrap: [AppComponent]

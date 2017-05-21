@@ -18,6 +18,7 @@ export class UserAccountComponent implements OnInit {
     private id:number;
     private routeSubscription:Subscription;
 
+
     constructor(private route:ActivatedRoute,private httpService:HttpService) {
         this.routeSubscription = route.params.subscribe(params=>this.id = params['id']);
     }

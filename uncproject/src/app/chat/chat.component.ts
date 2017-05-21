@@ -17,7 +17,7 @@ import {Trip} from "../models/trips.interface";
 })
 
 export class ChatComponent implements OnInit, OnDestroy {
-    
+
     public userProfile:User;
     private id:number;
     private routeSubscription:Subscription;
@@ -26,7 +26,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     message:chatMessage;
     newMessage;
     msg;
-   
     date:Date;
     trip:Trip;
 
@@ -65,16 +64,30 @@ export class ChatComponent implements OnInit, OnDestroy {
             });
 
         this.connection = this.chatService.getMessages().subscribe(msg => {
-            this.newMessage = msg;
 
+            this.newMessage = msg;
             if (this.id == this.newMessage.text.travel.id) {
                 this.messages.push(new chatMessage(null, this.newMessage.text.travel, this.newMessage.text.sender,
                     this.newMessage.text.sendTime, this.newMessage.text.body));
             }
-        })
+
+          if ( this.message.sender.id.toString() !== 'null') {
+            if (this.message.sender.id !== parseInt(localStorage.getItem('id'))) {
+              document.getElementById('sender').style.cssFloat = 'left';
+              document.getElementById('sender').style.background = 'dodgerblue';
+            }else {
+              document.getElementById('sender').style.cssFloat = 'right';
+              document.getElementById('sender').style.background = 'pink';
+            }
+          }
+
+          console.log(this.message.sender.id + ' ' + parseInt(localStorage.getItem('id')));
+
+
+        });
+
 
     }
-
 
     sendMessage() {
         this.message = new chatMessage(null, this.trip, this.userProfile, new Date, this.msg);
