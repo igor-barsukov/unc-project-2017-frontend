@@ -61,6 +61,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         }
         return this.id;
 
+
   }
 
   logout() {
