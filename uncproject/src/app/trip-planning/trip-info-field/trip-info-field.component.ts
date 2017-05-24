@@ -17,6 +17,7 @@ export class TripInfoFieldComponent implements OnInit {
     trip: Trip;
     days: Day[] = [];
     tripPlanId: number = this.route.parent.snapshot.params['id'];
+    ivitation: string;
 
     constructor(private route: ActivatedRoute, private httpService: HttpService, private tripService: TripService, private localStorageService: LocalStorageService) {
     }
@@ -76,62 +77,71 @@ export class TripInfoFieldComponent implements OnInit {
         }
     }
 
-    // addOrUpdateTrip(model: Trip, isValid: boolean) {
-    //     if (isValid) {
-    //         this.days = [];
-    //         if (this.tripPlanId == 0) {
-    //             this.trip.active = true;
-    //
-    //             if (model.endDate != null) {
-    //                 let i = 1;
-    //                 this.days.push(new Day(i, new Date(this.trip.startDate), []));
-    //
-    //                 while (this.days[this.days.length - 1].name < new Date(model.endDate)) {
-    //                     i++;
-    //                     this.days.push(new Day(i, new Date(this.days[this.days.length - 1].name.valueOf() + 24 * 60 * 60 * 1000), []));
-    //                 }
-    //                 this.trip.days = this.days;
-    //                 this.trip.activities = [];
-    //                 this.trip.movements = [];
-    //                 this.tripService.addTrip(this.trip);
-    //                 this.tripService.setNameDay(this.days);
-    //
-    //
-    //                 this.httpService.addOrUpdateTrip(this.trip, 1)
-    //                     .subscribe((data) => {
-    //                         this.trip = data;
-    //                     });
-    //
-    //             } else {
-    //                 this.trip.days[0] = new Day(1, new Date(this.trip.startDate), []);
-    //                 this.days.push(new Day(1, new Date(this.trip.startDate), []));
-    //                 this.trip.days = this.days;
-    //                 this.trip.activities = [];
-    //                 this.trip.movements = [];
-    //                 this.tripService.addTrip(this.trip);
-    //                 this.tripService.setNameDay(this.days);
-    //
-    //                 this.httpService.addOrUpdateTrip(this.trip, 1)
-    //                     .subscribe((data) => {
-    //                         this.trip = data;
-    //                     });
-    //             }
-    //         } else {
-    //             this.httpService.addOrUpdateTrip(this.trip, parseInt(localStorage.getItem('id')))
-    //                 .subscribe((data) => {
-    //                     this.trip = data;
-    //                 });
-    //
-    //             let i = 1;
-    //             this.days.push(new Day(i, new Date(this.trip.startDate), []));
-    //             while (this.days[this.days.length - 1].name < new Date(this.trip.endDate)) {
-    //                 i++;
-    //                 this.days.push(new Day(i, new Date(this.days[this.days.length - 1].name.valueOf() + 24 * 60 * 60 * 1000), []));
-    //             }
-    //             this.trip.days = this.days;
-    //             this.tripService.setNameDay(this.days);
-    //             //console.log(this.tripService.getTrip());
-    //         }
-    //     }
-    // }
+    sendEmail(ivitation: string){
+      if (ivitation){
+        this.ivitation = ivitation;
+        console.log(this.ivitation);
+      }
+      this.httpService.sendEmail(this.ivitation, this.tripPlanId, parseInt(localStorage.getItem('id')));
+
+    }
+
+    addOrUpdateTrip(model: Trip, isValid: boolean) {
+        if (isValid) {
+            this.days = [];
+            if (this.tripPlanId == 0) {
+                this.trip.active = true;
+
+                if (model.endDate != null) {
+                    let i = 1;
+                    this.days.push(new Day(i, new Date(this.trip.startDate), []));
+
+                    while (this.days[this.days.length - 1].name < new Date(model.endDate)) {
+                        i++;
+                        this.days.push(new Day(i, new Date(this.days[this.days.length - 1].name.valueOf() + 24 * 60 * 60 * 1000), []));
+                    }
+                    this.trip.days = this.days;
+                    this.trip.activities = [];
+                    this.trip.movements = [];
+                    this.tripService.addTrip(this.trip);
+                    this.tripService.setNameDay(this.days);
+
+
+                    this.httpService.addOrUpdateTrip(this.trip)
+                        .subscribe((data) => {
+                            this.trip = data;
+                        });
+
+                } else {
+                    this.trip.days[0] = new Day(1, new Date(this.trip.startDate), []);
+                    this.days.push(new Day(1, new Date(this.trip.startDate), []));
+                    this.trip.days = this.days;
+                    this.trip.activities = [];
+                    this.trip.movements = [];
+                    this.tripService.addTrip(this.trip);
+                    this.tripService.setNameDay(this.days);
+
+                    this.httpService.addOrUpdateTrip(this.trip)
+                        .subscribe((data) => {
+                            this.trip = data;
+                        });
+                }
+            } else {
+                this.httpService.addOrUpdateTrip(this.trip)
+                    .subscribe((data) => {
+                        this.trip = data;
+                    });
+
+                let i = 1;
+                this.days.push(new Day(i, new Date(this.trip.startDate), []));
+                while (this.days[this.days.length - 1].name < new Date(this.trip.endDate)) {
+                    i++;
+                    this.days.push(new Day(i, new Date(this.days[this.days.length - 1].name.valueOf() + 24 * 60 * 60 * 1000), []));
+                }
+                this.trip.days = this.days;
+                this.tripService.setNameDay(this.days);
+                //console.log(this.tripService.getTrip());
+            }
+        }
+    }
 }

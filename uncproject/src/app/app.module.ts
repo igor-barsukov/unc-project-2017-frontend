@@ -47,8 +47,9 @@ import {LoginGuard} from './guards/login.guard';
 import { MapComponent } from './map/map.component';
 import { MessagesComponent } from './messages/messages.component';
 import {TripService} from './services/trip.service';
-
 import { Ng2SearchPipe } from 'ng2-search-filter';
+import { FacebookModule } from 'ngx-facebook';
+import { Angular2SocialLoginModule } from 'angular2-social-login';
 
 const userRoutes: Routes = [
   { path: 'user-account', component: UserAccountComponent},
@@ -97,6 +98,11 @@ const appRoutes: Routes = [
   { path: 'user/:id', component: UserComponent, children: userRoutes},
   { path: '**', component: NotFoundComponent }
 ];
+
+let providers = {
+  'facebook': {'clientId': '1455074181180837',
+  'apiVersion': 'v2.9'}
+};
 
 @NgModule({
   declarations: [
@@ -149,11 +155,15 @@ const appRoutes: Routes = [
       prefix: 'app-root',
       //  storageType: 'localStorage'
       storageType: 'sessionStorage'
-    })
+    }),
+    FacebookModule.forRoot(),
+    Angular2SocialLoginModule
 
   ],
   providers: [MainGuard, LoginGuard, TripService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+Angular2SocialLoginModule.loadProvidersScripts(providers);
 

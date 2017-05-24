@@ -47,9 +47,14 @@
                     Date trip is required.
                 </small>
             </div>
-            <div class="input-group info">
-                <button type="submit" class="btn btn-primary">Save</button>
+            <div clas="input-group info">
+                <button class="btn btn-primary">Save</button>
             </div>
+            <div class="send-email">
+              <input type="text" placeholder="Email" #ivitation (keyup.enter)="sendEmail(ivitation.value)" >
+              <button class="btn btn-primary" (click)="sendEmail(ivitation.value)">Send</button>
+            </div>
+
         </form>
     </div>
 </div>

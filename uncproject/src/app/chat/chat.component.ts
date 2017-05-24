@@ -28,6 +28,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     msg;
     date:Date;
     trip:Trip;
+    txtHTML: string;
 
     constructor(private chatService:ChatService, private route:ActivatedRoute, private httpService:HttpService,
                 private localStorageService:LocalStorageService) {
@@ -72,12 +73,12 @@ export class ChatComponent implements OnInit, OnDestroy {
             }
 
           if ( this.message.sender.id.toString() !== 'null') {
-            if (this.message.sender.id !== parseInt(localStorage.getItem('id'))) {
-              document.getElementById('sender').style.cssFloat = 'left';
+            if (this.message.sender.id.toString() == localStorage.getItem('id')) {
+              // document.getElementById('sender').style.cssFloat = 'left';
               document.getElementById('sender').style.background = 'dodgerblue';
             }else {
-              document.getElementById('sender').style.cssFloat = 'right';
-              document.getElementById('sender').style.background = 'pink';
+              // document.getElementById('sender').style.cssFloat = 'right';
+              document.getElementById('sender').style.background = 'palegoldenrod';
             }
           }
 

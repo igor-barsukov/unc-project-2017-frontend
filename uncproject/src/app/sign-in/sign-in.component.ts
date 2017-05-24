@@ -4,6 +4,7 @@ import {HttpService} from "../services/http.service";
 import {Router} from "@angular/router";
 import {UserRegistered} from "../models/user-registered.interface";
 import { LocalStorageService } from 'angular-2-local-storage';
+import { FacebookService, LoginResponse, LoginOptions, UIResponse, UIParams } from 'ngx-facebook';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +16,15 @@ export class SignInComponent implements OnInit {
   userSignIn:UserSignIn;
   receivedUser:UserRegistered;
 
-  constructor(private route:Router, private httpService:HttpService,private localStorageService: LocalStorageService) {
+  constructor(private fb: FacebookService, private route:Router, private httpService:HttpService,private localStorageService: LocalStorageService) {
+    console.log('Initializing Facebook');
+
+    fb.init({
+      appId      : '1455074181180837',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.9'
+    });
   }
 
   ngOnInit() {
@@ -39,6 +48,13 @@ export class SignInComponent implements OnInit {
             console.log(localStorage.getItem('id'));
         });
     }
+  }
+
+  login() {
+    this.fb.login()
+      .then((res: LoginResponse) => {
+      console.log('logged in', res);
+      });
   }
 
 }

@@ -258,4 +258,13 @@ export class HttpService {
           return Observable.throw(error);
         });
     }
+
+  sendEmail(email: String, travelId: number, userId: number){
+    return this.http.get('http://localhost:8181/sendEmail/travel=' + travelId + '/user=' + userId + '/' + email)
+      .map((resp: Response) => resp.json())
+      .catch((error: any) => {
+        return Observable.throw(error);
+      });
+  }
+
 }
